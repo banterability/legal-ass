@@ -1,0 +1,8 @@
+{
+  "name": "legal-ass",
+  "version": "0.0.0",
+  "description": "Truncation + weird business rules = FUNcation",
+  "main": "index.js",
+  "author": "Jeff Long",
+  "license": "MIT"
+}
