@@ -15,5 +15,8 @@
   },
   "scripts": {
     "test": "mocha"
+  },
+  "dependencies": {
+    "underscore": "^1.7.0"
   }
 }
