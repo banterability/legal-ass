@@ -4,5 +4,8 @@
   "description": "Truncation + weird business rules = FUNcation",
   "main": "index.js",
   "author": "Jeff Long",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "^1.8.0"
+  }
 }
