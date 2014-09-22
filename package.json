@@ -6,6 +6,14 @@
   "author": "Jeff Long",
   "license": "MIT",
   "devDependencies": {
-    "coffee-script": "^1.8.0"
+    "assertive": "^1.4.0",
+    "coffee-script": "^1.8.0",
+    "mocha": "^1.21.4"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
