@@ -1,6 +1,8 @@
 # Legal Ass…
 
-Truncation + weird business rules = FUNcation! Prevents some embarassing truncations, no matter how unlikely they are to ever happen in the real world.
+![](http://cl.ly/XnDW/Screen%20Shot%202014-09-30%20at%2011.32.37%20AM.png)
+
+Truncates text. Prevents embarassing word splices. Truncation + business rules = FUNcation!
 
 [![Build Status](https://travis-ci.org/banterability/legal-ass.svg?branch=master)](https://travis-ci.org/banterability/legal-ass)
 

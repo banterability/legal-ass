@@ -1,7 +1,7 @@
 {
   "name": "legal-ass",
   "version": "0.1.0",
-  "description": "Truncation + weird business rules = FUNcation",
+  "description": "Truncates text. Prevents embarassing word splices. Truncation + business rules = FUNcation!",
   "main": "index.js",
   "author": "Jeff Long",
   "license": "MIT",
