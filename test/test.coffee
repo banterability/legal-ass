@@ -5,41 +5,77 @@ describe 'legal-ass', ->
   it 'exists', ->
     assert.expect LegalAss
 
-  describe 'truncation', ->
-    describe 'respecting word boundaries', ->
-      it 'does not truncate phrases that are not too long', ->
-        phrase = 'On the playground was where I spent most of my days'
-        assert.equal phrase, LegalAss phrase, {length: 60}
+  before ->
+    @phrase = 'On the playground was where I spent most of my days'
 
-      it 'truncates phrases that are too long', ->
-        phrase = 'On the playground was where I spent most of my days'
-        expected = 'On the playground was…'
-        assert.equal expected, LegalAss phrase, {length: 25}
+  describe 'respecting word boundaries (default)', ->
+    describe 'when phrase is shorter than character limit', ->
+      it 'does not truncate', ->
+        assert.equal @phrase, LegalAss @phrase, {length: 60}
 
-      it 'does not truncate phrases that are exactly long enough', ->
-        phrase = 'On the playground was where I spent most of my days'
-        assert.equal phrase, LegalAss phrase, {length: 51}
+    describe 'when phrase is exactly the character limit', ->
+      it 'does not truncate', ->
+        assert.equal @phrase, LegalAss @phrase, {length: 51}
 
-      it 'truncates without respecting word boundaries when respecting them is impossible', ->
-        phrase = 'Technological advancement'
-        expected = 'Techno…'
-        assert.equal expected, LegalAss phrase, {length: 7}
+    describe 'when phrase is longer than character limit', ->
+      describe 'when character limit falls inside a word', ->
+        it 'truncates after the previous full word', ->
+          expected = 'On the playground…'
+          assert.equal expected, LegalAss @phrase, {length: 20}
 
-    describe 'ignoring word boundaries', ->
-      it 'does not truncate phrases that are not too long', ->
-        phrase = 'On the playground was where I spent most of my days'
-        assert.equal phrase, LegalAss phrase, {length: 60, splitWords: true}
+      describe 'when character limit falls exactly on the end of a word', ->
+        it 'truncates after the previous full word', ->
+          expected = 'On the playground…'
+          assert.equal expected, LegalAss @phrase, {length: 21}
 
-      it 'truncates phrases that are too long', ->
-        phrase = 'On the playground was where I spent most of my days'
-        expected = 'On the playground was wh…'
-        assert.equal expected, LegalAss phrase, {length: 25, splitWords: true}
+      describe 'when character limit falls between words', ->
+        it 'truncates at the end of the word', ->
+          expected = 'On the playground was…'
+          assert.equal expected, LegalAss @phrase, {length: 22}
 
-      it 'does not truncate phrases that are exactly long enough', ->
-        phrase = 'On the playground was where I spent most of my days'
-        assert.equal phrase, LegalAss phrase, {length: 51, splitWords: true}
+      describe 'when character limit falls exactly on the beginning of a word', ->
+        it 'truncates after the end of the previous word', ->
+          expected = 'On the playground was…'
+          assert.equal expected, LegalAss @phrase, {length: 23}
 
-      it 'truncates without respecting word boundaries', ->
-        phrase = 'Technological advancement'
-        expected = 'Techno…'
-        assert.equal expected, LegalAss phrase, {length: 7, splitWords: true}
+      describe 'when no word boundaries are available prior to character limit', ->
+        it 'truncates at the character limit', ->
+          phrase = 'Triskaidekaphobia struck this June.'
+          expected = 'Triskaidekap…'
+          assert.equal expected, LegalAss phrase, {length: 13}
+
+  describe 'ignoring word boundaries', ->
+    describe 'when phrase is shorter than character limit', ->
+      it 'does not truncate', ->
+        assert.equal @phrase, LegalAss @phrase, {length: 60, splitWords: true}
+
+    describe 'when phrase is exactly the character limit', ->
+      it 'does not truncate', ->
+        assert.equal @phrase, LegalAss @phrase, {length: 51, splitWords: true}
+
+    describe 'when phrase is longer than character limit', ->
+      describe 'when character limit falls inside a word', ->
+        it 'truncates at the character limit', ->
+          expected = 'On the playground w…'
+          assert.equal expected, LegalAss @phrase, {length: 20, splitWords: true}
+
+      describe 'when character limit falls exactly on the end of a word', ->
+        it 'truncates at the character limit', ->
+          expected = 'On the playground wa…'
+          assert.equal expected, LegalAss @phrase, {length: 21, splitWords: true}
+
+      describe 'when character limit falls between words', ->
+        it 'truncates at the character limit', ->
+          expected = 'On the playground was…'
+          assert.equal expected, LegalAss @phrase, {length: 22, splitWords: true}
+
+      describe 'when character limit falls exactly on the beginning of a word', ->
+        it 'truncates after the end of the previous word', ->
+          expected = 'On the playground was…'
+          assert.equal expected, LegalAss @phrase, {length: 23, splitWords: true}
+
+      describe 'when no word boundaries are available prior to character limit', ->
+        it 'truncates at the character limit', ->
+          phrase = 'Triskaidekaphobia struck this June.'
+          expected = 'Triskaidekap…'
+          assert.equal expected, LegalAss phrase, {length: 13, splitWords: true}

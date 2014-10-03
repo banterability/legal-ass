@@ -4,7 +4,7 @@ module.exports = (phrase, options) ->
   length = options.length
   splitWords = options.splitWords || false
 
-  # Return fast if phrase isn't too long
+  # Return if phrase isn't too long
   return phrase if phrase.length <= length
 
   if splitWords
@@ -22,7 +22,8 @@ truncateAtWordBoundary = (phrase, length) ->
   # Fall back to substring if no word boundaries satisfy length
   return truncateAtLength phrase, length unless lastPossibleWord?
 
-  truncateAtLength phrase, (lastPossibleWord + 1)
+  truncateAtLength phrase, lastPossibleWord + 1
 
 truncateAtLength = (phrase, length) ->
-  phrase.substr(0, length - 1) + '…'
+  truncatedPhrase = phrase.substr(0, length - 1)
+  truncatedPhrase.trimRight() + '…'
