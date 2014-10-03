@@ -17,7 +17,7 @@ truncateAtWordBoundary = (phrase, length) ->
   wordBoundaries = []
   while match = wordBoundaryRegex.exec phrase
     wordBoundaries.push match.index
-  lastPossibleWord = last (filter wordBoundaries, (boundary) -> boundary < length - 1)
+  lastPossibleWord = last (filter wordBoundaries, (boundary) -> boundary < length)
 
   # Fall back to substring if no word boundaries satisfy length
   return truncateAtLength phrase, length unless lastPossibleWord?
