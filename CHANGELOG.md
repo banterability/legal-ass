@@ -1,3 +1,8 @@
+1.1.0
+-----
+* Fix over-aggressive truncation
+* Strip trailing whitespace before ellipsis
+
 1.0.1
 -----
 * Fix main path for require
