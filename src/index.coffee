@@ -1,13 +1,12 @@
 {filter, last} = require 'underscore'
 
-module.exports = (phrase, options) ->
+module.exports = (phrase, options = {}) ->
   length = options.length
-  splitWords = options.splitWords || false
 
   # Return if phrase isn't too long
   return phrase if phrase.length <= length
 
-  if splitWords
+  if options.splitWords
     truncateAtLength phrase, length
   else
     truncateAtWordBoundary phrase, length
