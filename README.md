@@ -42,3 +42,5 @@ If you'd like to use your own string instead of ellipses, pass that as `ellipses
 LegalAss('So this is a story all about how', {length: 22, ellipses: ' (More >)'});
 // -> 'So this is a (More >)'
 ```
+
+Note that the original phrase above was truncated with a trailing space and the library made the end result an additional character shorter by eliminating it.
