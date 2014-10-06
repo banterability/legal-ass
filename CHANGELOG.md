@@ -1,3 +1,7 @@
+1.2.0
+-----
+* Use custom string as ellipses
+
 1.1.0
 -----
 * Fix over-aggressive truncation

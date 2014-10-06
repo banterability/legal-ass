@@ -1,6 +1,6 @@
 {
   "name": "legal-ass",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Truncates text. Prevents embarassing word splices. Truncation + business rules = FUNcation!",
   "main": "lib/index.js",
   "author": "Jeff Long",
