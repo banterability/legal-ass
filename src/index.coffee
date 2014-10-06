@@ -24,5 +24,5 @@ truncateAtWordBoundary = (phrase, length) ->
   truncateAtLength phrase, lastPossibleWord + 1
 
 truncateAtLength = (phrase, length) ->
-  truncatedPhrase = phrase.substr(0, length - 1)
+  truncatedPhrase = phrase[0...(length - 1)]
   truncatedPhrase.trimRight() + '…'
